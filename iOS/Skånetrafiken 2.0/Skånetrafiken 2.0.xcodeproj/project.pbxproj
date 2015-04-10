@@ -14,6 +14,9 @@
 		29D17F851AD8189700EB6A52 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29D17F841AD8189700EB6A52 /* Images.xcassets */; };
 		29D17F881AD8189700EB6A52 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29D17F861AD8189700EB6A52 /* LaunchScreen.xib */; };
 		29D17F941AD8189700EB6A52 /* Ska_netrafiken_2_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D17F931AD8189700EB6A52 /* Ska_netrafiken_2_0Tests.m */; };
+		29D17F9F1AD836BE00EB6A52 /* bus.png in Resources */ = {isa = PBXBuildFile; fileRef = 29D17F9E1AD836BE00EB6A52 /* bus.png */; };
+		29D17FA11AD83D3900EB6A52 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D17FA01AD83D3900EB6A52 /* CoreLocation.framework */; };
+		29D17FA31AD84C9400EB6A52 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29D17FA21AD84C9400EB6A52 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,9 @@
 		29D17F8D1AD8189700EB6A52 /* Skånetrafiken 2.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Skånetrafiken 2.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D17F921AD8189700EB6A52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29D17F931AD8189700EB6A52 /* Ska_netrafiken_2_0Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Ska_netrafiken_2_0Tests.m; sourceTree = "<group>"; };
+		29D17F9E1AD836BE00EB6A52 /* bus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bus.png; sourceTree = "<group>"; };
+		29D17FA01AD83D3900EB6A52 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		29D17FA21AD84C9400EB6A52 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29D17FA31AD84C9400EB6A52 /* QuartzCore.framework in Frameworks */,
+				29D17FA11AD83D3900EB6A52 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +71,8 @@
 		29D17F6B1AD8189700EB6A52 = {
 			isa = PBXGroup;
 			children = (
+				29D17FA21AD84C9400EB6A52 /* QuartzCore.framework */,
+				29D17FA01AD83D3900EB6A52 /* CoreLocation.framework */,
 				29D17F761AD8189700EB6A52 /* Skånetrafiken 2.0 */,
 				29D17F901AD8189700EB6A52 /* Skånetrafiken 2.0Tests */,
 				29D17F751AD8189700EB6A52 /* Products */,
@@ -96,6 +106,7 @@
 		29D17F771AD8189700EB6A52 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				29D17F9D1AD8368C00EB6A52 /* Images */,
 				29D17F781AD8189700EB6A52 /* Info.plist */,
 				29D17F791AD8189700EB6A52 /* main.m */,
 			);
@@ -117,6 +128,14 @@
 				29D17F921AD8189700EB6A52 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		29D17F9D1AD8368C00EB6A52 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				29D17F9E1AD836BE00EB6A52 /* bus.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29D17F9F1AD836BE00EB6A52 /* bus.png in Resources */,
 				29D17F831AD8189700EB6A52 /* Main.storyboard in Resources */,
 				29D17F881AD8189700EB6A52 /* LaunchScreen.xib in Resources */,
 				29D17F851AD8189700EB6A52 /* Images.xcassets in Resources */,
