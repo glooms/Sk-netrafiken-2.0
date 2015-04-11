@@ -23,7 +23,7 @@ public class StationFinder {
     public static final String TAG = "ClosestStation";
     ArrayList<Station> stations;
 
-    public Station getClosestStation() {
+    public synchronized Station getClosestStation() {
         Station closestStation = null;
         stations = new ArrayList<>();
         // Create a new HttpClient and Post Header
@@ -73,8 +73,8 @@ public class StationFinder {
         double minDistance = Double.MAX_VALUE;
         if (closestStation == null) {
             for (Station closeStation : stations) {
-                if (closeStation.getDistance() < minDistance) {
-                    minDistance = closeStation.getDistance();
+                if (closeStation.distance < minDistance) {
+                    minDistance = closeStation.distance;
                     closestStation = closeStation;
                 }
             }
@@ -83,7 +83,7 @@ public class StationFinder {
         }
         return closestStation;
     }
-    private Station readStation(XmlPullParser parser) throws XmlPullParserException, IOException {
+    private synchronized Station readStation(XmlPullParser parser) throws XmlPullParserException, IOException {
         final String TAG = "Skanetrafiken";
         parser.next();
         String type = parser.getName();
@@ -136,7 +136,7 @@ public class StationFinder {
         }
         return null;
     }
-    private void waitFor(XmlPullParser parser, String s) throws XmlPullParserException, IOException{
+    private synchronized void waitFor(XmlPullParser parser, String s) throws XmlPullParserException, IOException{
         String type = parser.getName();
         while (type == null) {
             parser.next();

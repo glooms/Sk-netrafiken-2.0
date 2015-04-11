@@ -28,12 +28,16 @@ public class Information {
         closestStation = sf.getClosestStation();
     }
 
-    public Station getClosestStation() {
+    public synchronized Station getClosestStation() {
         return closestStation;
     }
 
-    public ArrayList<Departure> getDeparturesFromStation(Station s) {
+    public synchronized ArrayList<Departure> getDeparturesFromStation(Station s) {
         df = new DepartureFinder();
         return df.departures(s);
+    }
+
+    public synchronized String[] getRoutes() {
+        return mockRoutes;
     }
 }

@@ -27,7 +27,7 @@ public class DepartureFinder  {
         departures = new ArrayList<>();
     }
 
-    public ArrayList<Departure> departures(Station s) {
+    public synchronized ArrayList<Departure> departures(Station s) {
         Departure d;
 
         // Create a new HttpClient and Post Header
@@ -73,7 +73,7 @@ public class DepartureFinder  {
     }
 
 
-    private Departure readDeparture(XmlPullParser parser) throws XmlPullParserException, IOException {
+    private synchronized Departure readDeparture(XmlPullParser parser) throws XmlPullParserException, IOException {
         parser.next();
         String type = parser.getName();
 
@@ -129,7 +129,7 @@ public class DepartureFinder  {
         return new Departure(name, id, time, dest);
     }
 
-    private void waitFor(XmlPullParser parser, String s) throws XmlPullParserException, IOException {
+    private synchronized void waitFor(XmlPullParser parser, String s) throws XmlPullParserException, IOException {
         String type = parser.getName();
         while (type == null) {
             parser.next();
