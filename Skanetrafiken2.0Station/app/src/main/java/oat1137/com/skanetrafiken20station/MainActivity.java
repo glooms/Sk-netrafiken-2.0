@@ -39,12 +39,15 @@ public class MainActivity extends ActionBarActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_main);
+        // setContentView(R.layout.activity_main);
         Log.d("Main", "Started application");
         Intent i = new Intent(this, SkanetrafikenService.class);
-       // SkanetrafikenService sts = new SkanetrafikenService();
+        // SkanetrafikenService sts = new SkanetrafikenService();
         fcs = new FindClosestStation();
         fcs.execute();
+        while (closestStation == null) {
+            Log.d(TAG, "WAITING");
+        }
         fd = new FindDepartures();
         fd.execute();
     }
@@ -52,19 +55,19 @@ public class MainActivity extends ActionBarActivity  {
     public void finishReadStations(ArrayList<Station> stations){
                     /* find station with lowest distance */
         double minDistance = Double.MAX_VALUE;
-        Station closestStation = null;
         for (Station s : stations) {
             if (s.getDistance() < minDistance) {
                 minDistance = s.getDistance();
                 closestStation = s;
             }
         }
-       Log.d(TAG, "CLOSEST STATION " + closestStation.getName());
-       Log.d(TAG, "CLOSEST STATIONID " + closestStation.getId());
+        Log.d(TAG, "CLOSEST STATION " + closestStation.getName());
+        Log.d(TAG, "CLOSEST STATIONID " + closestStation.getId());
     }
     public void finishReadDeparture(ArrayList<Departure> departures){
                     /* find station with lowest distance */
         for (Departure d : departures) {
+            
             Log.d(TAG, "LINE: " + d.id);
             Log.d(TAG, "TIME: " + d.time);
             Log.d(TAG, "DEST: " + d.dest);
@@ -154,7 +157,7 @@ public class MainActivity extends ActionBarActivity  {
             Log.d(TAG, "NR OF STATIONS " + stations.size());
             finishReadStations(stations);
             return null;
-         }
+        }
     }
     private Station readStation(XmlPullParser parser) throws XmlPullParserException, IOException {
         final String TAG = "Skanetrafiken";
@@ -219,13 +222,14 @@ public class MainActivity extends ActionBarActivity  {
         return null;
     }
     class FindDepartures extends AsyncTask {
+        final String TAG = "Skanetrafiken";
         protected void onPostExecute(ArrayList<Station> stations) {
             super.onPostExecute(stations);
 
         }
         @Override
         protected Object doInBackground(Object[] params) {
-            Log.d(TAG, "INTO DOINBACKGROUND");
+            Log.d(TAG, "INTO FindDepartures");
             Departure d;
             ArrayList<Departure> departures = new ArrayList<>();
             // Create a new HttpClient and Post Header
@@ -280,42 +284,72 @@ public class MainActivity extends ActionBarActivity  {
         final String TAG = "Skanetrafiken";
         parser.next();
         String type = parser.getName();
-        String name = "";
 
+        String name = "";
         int id = 0;
         String time = "";
         String dest = "";
 
         Log.d(TAG, "ReadParser: Type: " + type);
-        while (!parser.getName().equals("Line")) {
-            if (type.equals("Name")) {
-                parser.next();
-                String sId = parser.getText();
-                Log.d(TAG, "ID: " + sId);
-                if (sId == null)
-                    return null;
-                id = Integer.valueOf(sId);
-                parser.next();
-            } else if (type.equals("JourneyDateTime")) {
-                parser.next();
-                String dTime = parser.getText();
-                Log.d(TAG, "Time: " + dTime);
-                if (dTime == null)
-                    return null;
-                time = dTime;
-                parser.next();
-            } else if (type.equals("Towards")) {
-                parser.next();
-                String to = parser.getText();
-                Log.d(TAG, "Towards: " + to);
-                if (to == null)
-                    return null;
-                dest = to;
-                parser.next();
-            }
+        waitFor(parser, "Name");
+        parser.next();
+        name = parser.getText();
+        Log.d(TAG, "NAME: " + name);
+        if (name == null) {
+            Log.d(TAG, "RECIEVED NULL");
+            return null;
+        }
+        waitFor(parser, "No");
+        parser.next();
+        String nbr = parser.getText();
+        Log.d(TAG, "ID: " + name);
+        if (nbr == null) {
+            Log.d(TAG, "RECIEVED NULL");
+            return null;
+        }
+        id = Integer.valueOf(nbr);
+
+        waitFor(parser, "JourneyDateTime");
+        parser.next();
+        String dTime = parser.getText();
+        Log.d(TAG, "Time: " + dTime);
+        if (dTime == null) {
+            Log.d(TAG, "RECIEVED NULL");
+            return null;
+
+        }
+        time = dTime;
+        parser.next();
+        waitFor(parser, "Towards");
+        parser.next();
+        String to = parser.getText();
+        Log.d(TAG, "Towards: " + to);
+        if (to == null) {
+            Log.d(TAG, "RECIEVED NULL");
+            return null;
+        }
+        dest = to;
+        parser.next();
+
+        waitFor(parser, "Line");
+
+        Log.d(TAG, "SURVIVED");
+        return new Departure(name, id, time, dest);
+    }
+
+    private void waitFor(XmlPullParser parser, String s) throws XmlPullParserException, IOException{
+        String type = parser.getName();
+        while (type == null) {
             parser.next();
             type = parser.getName();
         }
-        return new Departure(id, time, dest);
+        if (s == null)
+            Log.d(TAG, "ERROR");
+        while(!type.equals(s)) {
+            do {
+                parser.next();
+                type = parser.getName();
+            } while (type == null);
+        }
     }
 }
