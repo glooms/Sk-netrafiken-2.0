@@ -67,7 +67,7 @@ public class MainActivity extends ActionBarActivity  {
     public void finishReadDeparture(ArrayList<Departure> departures){
                     /* find station with lowest distance */
         for (Departure d : departures) {
-            
+            Log.d(TAG, "NAME: " + d.name);
             Log.d(TAG, "LINE: " + d.id);
             Log.d(TAG, "TIME: " + d.time);
             Log.d(TAG, "DEST: " + d.dest);
