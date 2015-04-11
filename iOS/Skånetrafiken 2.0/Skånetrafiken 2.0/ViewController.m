@@ -45,29 +45,16 @@
     // Do any additional setup after loading the view, typically from a nib.
     [self createTempData];
     
-    // Initialize location manager and set ourselves as the delegate
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    
-    
-    //F000FFC0-0451-4000-B000-000000000000
-    // Create a NSUUID with the same UUID as the broadcasting beacon
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:@"5CCF4FF2-C7C5-8A99-B3FF-BFF2D0D78F69"];
-    
-    // Setup a new region with that UUID and same identifier as the broadcasting beacon
-    self.myBeaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:uuid
-                                                             identifier:@"com.jacobarvidsson.region"];
-    
-    // Tell location manager to start monitoring for the beacon region
-    [self.locationManager startMonitoringForRegion:self.myBeaconRegion];
-    
     self.animatedBox.layer.cornerRadius = self.animatedBox.frame.size.width/2;
+    self.aboutBox.layer.cornerRadius = 6;
+    self.settingsBox.layer.cornerRadius = 6;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.count = 0;
     [self.tableView setHidden:YES];
     [self.map setHidden:YES];
     [self.line1 setHidden:YES];
     [self.line2 setHidden:YES];
+    self.animatedBox.alpha = 0.8f;
 
     //Animation
     CABasicAnimation *scaleAnimation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
@@ -78,6 +65,12 @@
     scaleAnimation.toValue = [NSNumber numberWithFloat:0.95];
     
     [self.animatedBox.layer addAnimation:scaleAnimation forKey:@"scale"];
+    
+    // Scan for all available CoreBluetooth LE devices
+    NSArray *services = @[[CBUUID UUIDWithString:myUUID]];
+    CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+    [centralManager scanForPeripheralsWithServices:services options:nil];
+    self.centralManager = centralManager;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -93,36 +86,73 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark LocationDelgateMethods
+#pragma mark - CBCentralManagerDelegate
 
-- (void)locationManager:(CLLocationManager*)manager didEnterRegion:(CLRegion*)region
+// method called whenever you have successfully connected to the BLE peripheral
+- (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    [self.locationManager startRangingBeaconsInRegion:self.myBeaconRegion];
-    NSLog(@"test1");
-
+    [peripheral setDelegate:self];
+    [peripheral discoverServices:nil];
+    self.connected = [NSString stringWithFormat:@"Connected: %@", peripheral.state == CBPeripheralStateConnected ? @"YES" : @"NO"];
+    NSLog(@"%@", self.connected);
 }
 
--(void)locationManager:(CLLocationManager*)manager didExitRegion:(CLRegion*)region
+// CBCentralManagerDelegate - This is called with the CBPeripheral class as its main input parameter. This contains most of the information there is to know about a BLE peripheral.
+- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    [self.locationManager stopRangingBeaconsInRegion:self.myBeaconRegion];
-    NSLog(@"test3");
-
-    //self.beaconFoundLabel.text = @"No";
+    NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
+    if ([localName length] > 0) {
+        NSLog(@"Found the heart rate monitor: %@", localName);
+        [self.centralManager stopScan];
+        self.pPeripheral = peripheral;
+        peripheral.delegate = self;
+        [self.centralManager connectPeripheral:peripheral options:nil];
+    }
 }
 
--(void)locationManager:(CLLocationManager*)manager
-       didRangeBeacons:(NSArray*)beacons
-              inRegion:(CLBeaconRegion*)region
+// method called whenever the device state changes.
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
-    // Beacon found!
-    self.stationLabel.text = @"Lunds Centralstation";
-    NSLog(@"test2");
-    //CLBeacon *foundBeacon = [beacons firstObject];
-    // You can retrieve the beacon data from its properties
-    //NSString *uuid = foundBeacon.proximityUUID.UUIDString;
-    //NSString *major = [NSString stringWithFormat:@"%@", foundBeacon.major];
-    //NSString *minor = [NSString stringWithFormat:@"%@", foundBeacon.minor];
+    // Determine the state of the peripheral
+    if ([central state] == CBCentralManagerStatePoweredOff) {
+        NSLog(@"CoreBluetooth BLE hardware is powered off");
+    }
+    else if ([central state] == CBCentralManagerStatePoweredOn) {
+        NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
+    }
+    else if ([central state] == CBCentralManagerStateUnauthorized) {
+        NSLog(@"CoreBluetooth BLE state is unauthorized");
+    }
+    else if ([central state] == CBCentralManagerStateUnknown) {
+        NSLog(@"CoreBluetooth BLE state is unknown");
+    }
+    else if ([central state] == CBCentralManagerStateUnsupported) {
+        NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
+    }
 }
+
+#pragma mark - CBPeripheralDelegate
+
+// CBPeripheralDelegate - Invoked when you discover the peripheral's available services.
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
+{
+    for (CBService *service in peripheral.services) {
+        NSLog(@"Discovered service: %@", service.UUID);
+        [peripheral discoverCharacteristics:nil forService:service];
+    }
+}
+
+// Invoked when you discover the characteristics of a specified service.
+- (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
+{
+}
+
+// Invoked when you retrieve a specified characteristic's value, or when the peripheral device notifies your app that the characteristic's value has changed.
+- (void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
+{
+}
+
+#pragma mark - Tableview delgate
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -179,15 +209,27 @@
         [self.line2 setHidden:YES];
         [self performOutAnimationForBox];
         [self performOutAnimationForLabel];
+        [self.aboutBox setHidden:NO];
+        [self.settingsBox setHidden:NO];
+        self.animatedBox.alpha = 0.8f;
+        self.background.hidden = NO;
+
 
     }else{
         [self.animatedBox.layer removeAllAnimations];
+        self.animatedBox.alpha = 1.0f;
+
+        CATransition *animation = [CATransition animation];
+        animation.type = kCATransitionFade;
+        animation.duration = 0.8;
+        [self.background.layer addAnimation:animation forKey:nil];
+        self.background.hidden = YES;
+        [self.aboutBox setHidden:YES];
+        [self.settingsBox setHidden:YES];
         self.stationLabel.text = @"Höjdpunkten";
         [self.tableView setHidden:NO];
         [self preformInLabelAnimation];
         [self preformInAnimationForAnimatedBox];
-
-
 
     }
 }
@@ -261,14 +303,14 @@
     translationAnimation.toValue = [NSNumber numberWithFloat:-80];
     translationAnimation.duration = duration;
     //Change translation
-    CABasicAnimation* translationxAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.x"];
-    translationxAnimation.fromValue = [NSNumber numberWithFloat:self.stationLabel.frame.origin.y-self.stationLabel.frame.size.height/2];
-    translationxAnimation.toValue = [NSNumber numberWithFloat:55];
-    translationxAnimation.duration = duration;
+    CABasicAnimation * widthAnimation = [CABasicAnimation animationWithKeyPath:@"bounds.size.width"];
+    widthAnimation.fromValue = [NSNumber numberWithInt:259];
+    widthAnimation.toValue = [NSNumber numberWithInt:150];
+    widthAnimation.duration = duration;
     
     //Perform group animation
     CAAnimationGroup *group = [CAAnimationGroup animation];
-    group.animations = [NSArray arrayWithObjects:translationAnimation,translationxAnimation, nil];
+    group.animations = [NSArray arrayWithObjects:translationAnimation,widthAnimation, nil];
     group.delegate = self;
     group.duration = duration;
     group.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
@@ -298,7 +340,7 @@
     //Change translation
     CABasicAnimation* translationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.translation.y"];
     translationAnimation.fromValue =[NSNumber numberWithFloat:0-self.animatedBox.frame.size.height/2-31];
-    translationAnimation.toValue = [NSNumber numberWithFloat: 76];
+    translationAnimation.toValue = [NSNumber numberWithFloat: 26];
     translationAnimation.duration = duration;
     
     //Changes width from halfscreen to fill the whole width

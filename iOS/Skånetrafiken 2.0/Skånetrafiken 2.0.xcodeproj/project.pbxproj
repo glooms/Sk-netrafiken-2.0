@@ -22,6 +22,8 @@
 		293D852F1AD989490064BB99 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 293D852E1AD989490064BB99 /* back.png */; };
 		293D85311AD9A4310064BB99 /* background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 293D85301AD9A4310064BB99 /* background.jpeg */; };
 		293D85331AD9A4ED0064BB99 /* background2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 293D85321AD9A4ED0064BB99 /* background2.jpg */; };
+		293D85351AD9BF200064BB99 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293D85341AD9BF200064BB99 /* CoreBluetooth.framework */; };
+		293D85371AD9C4C60064BB99 /* road.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 293D85361AD9C4C60064BB99 /* road.jpg */; };
 		29D17F7A1AD8189700EB6A52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D17F791AD8189700EB6A52 /* main.m */; };
 		29D17F7D1AD8189700EB6A52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D17F7C1AD8189700EB6A52 /* AppDelegate.m */; };
 		29D17F801AD8189700EB6A52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D17F7F1AD8189700EB6A52 /* ViewController.m */; };
@@ -65,6 +67,8 @@
 		293D852E1AD989490064BB99 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		293D85301AD9A4310064BB99 /* background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpeg; sourceTree = "<group>"; };
 		293D85321AD9A4ED0064BB99 /* background2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background2.jpg; sourceTree = "<group>"; };
+		293D85341AD9BF200064BB99 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		293D85361AD9C4C60064BB99 /* road.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = road.jpg; path = ../../../../../../Desktop/road.jpg; sourceTree = "<group>"; };
 		29D17F741AD8189700EB6A52 /* Skånetrafiken 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skånetrafiken 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D17F781AD8189700EB6A52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29D17F791AD8189700EB6A52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293D85351AD9BF200064BB99 /* CoreBluetooth.framework in Frameworks */,
 				293D85121AD949F50064BB99 /* MapKit.framework in Frameworks */,
 				29D17FA31AD84C9400EB6A52 /* QuartzCore.framework in Frameworks */,
 				29D17FA11AD83D3900EB6A52 /* CoreLocation.framework in Frameworks */,
@@ -107,6 +112,7 @@
 		29D17F6B1AD8189700EB6A52 = {
 			isa = PBXGroup;
 			children = (
+				293D85341AD9BF200064BB99 /* CoreBluetooth.framework */,
 				293D85111AD949F50064BB99 /* MapKit.framework */,
 				29D17FA21AD84C9400EB6A52 /* QuartzCore.framework */,
 				29D17FA01AD83D3900EB6A52 /* CoreLocation.framework */,
@@ -182,6 +188,7 @@
 			children = (
 				293D85191AD954290064BB99 /* train.png */,
 				293D852E1AD989490064BB99 /* back.png */,
+				293D85361AD9C4C60064BB99 /* road.jpg */,
 				293D851A1AD954290064BB99 /* vehicle.png */,
 				29D17F9E1AD836BE00EB6A52 /* bus.png */,
 				293D85261AD96F9D0064BB99 /* station_sign.png */,
@@ -279,6 +286,7 @@
 				293D852B1AD975480064BB99 /* station_sign_red.png in Resources */,
 				293D85271AD96F9D0064BB99 /* station_sign.png in Resources */,
 				293D851B1AD954290064BB99 /* train.png in Resources */,
+				293D85371AD9C4C60064BB99 /* road.jpg in Resources */,
 				293D85331AD9A4ED0064BB99 /* background2.jpg in Resources */,
 				29D17F831AD8189700EB6A52 /* Main.storyboard in Resources */,
 				29D17F881AD8189700EB6A52 /* LaunchScreen.xib in Resources */,

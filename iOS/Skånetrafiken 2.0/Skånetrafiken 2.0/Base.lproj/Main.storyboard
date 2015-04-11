@@ -16,6 +16,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="road.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Zh8-rZ-zaY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ysv-Te-UvE">
                                 <rect key="frame" x="54" y="76" width="266" height="266"/>
                                 <subviews>
@@ -109,15 +112,42 @@
                                 <rect key="frame" x="0.0" y="85" width="375" height="2"/>
                                 <color key="backgroundColor" white="0.81695171734234229" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0nV-8b-oaZ">
+                                <rect key="frame" x="40" y="417" width="300" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Travel planer" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mq0-is-TLI">
+                                        <rect key="frame" x="10" y="12" width="280" height="37"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="31"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.47000000000000003" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yo7-sc-xaS">
+                                <rect key="frame" x="41" y="495" width="300" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fzJ-vj-quI">
+                                        <rect key="frame" x="10" y="12" width="280" height="37"/>
+                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="31"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.46999999999999997" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="aboutBox" destination="0nV-8b-oaZ" id="lv4-pi-18U"/>
                         <outlet property="animatedBox" destination="ysv-Te-UvE" id="x9H-jd-Ex3"/>
+                        <outlet property="background" destination="Zh8-rZ-zaY" id="aJL-ar-deO"/>
                         <outlet property="line1" destination="cgb-Yn-YVa" id="0bw-yP-5bM"/>
                         <outlet property="line2" destination="5MS-fx-zmg" id="T2U-iX-hTO"/>
                         <outlet property="map" destination="GqP-37-9mN" id="bt3-qq-dMO"/>
+                        <outlet property="settingsBox" destination="Yo7-sc-xaS" id="Drr-fT-6pw"/>
                         <outlet property="stationLabel" destination="BTz-t8-oqn" id="3he-ms-60K"/>
                         <outlet property="tableView" destination="QEM-FO-h0z" id="0Yz-oD-FK4"/>
                     </connections>
@@ -206,35 +236,10 @@
             </objects>
             <point key="canvasLocation" x="129.5" y="1072.5"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="9g3-Yf-o6w">
-            <objects>
-                <viewController id="bQT-XG-ddx" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zD3-8W-u6L"/>
-                        <viewControllerLayoutGuide type="bottom" id="31d-KP-5e1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wXQ-do-rIs">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are on buss #" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYF-id-02e">
-                                <rect key="frame" x="91" y="98" width="138" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mq5-Fu-Pjd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="532" y="331"/>
-        </scene>
     </scenes>
     <resources>
         <image name="back.png" width="128" height="128"/>
+        <image name="road.jpg" width="188" height="333"/>
         <image name="station_sign_black.png" width="112" height="111"/>
         <image name="vehicle.png" width="128" height="128"/>
     </resources>
