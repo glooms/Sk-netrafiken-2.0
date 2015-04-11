@@ -1,6 +1,5 @@
 package oat1137.com.skanetrafiken20station;
 
-import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Xml;
@@ -28,14 +27,14 @@ public class StationFinder extends AsyncTask  {
     protected void onPostExecute(Object o) {
         super.onPostExecute(stations);
         Log.d(TAG, "ONPOSTEXECUTE");
-        mListener.processFinish(stations);
+        mListener.stationFindFinish(stations);
 
     }
 
 
-    AsyncResponse mListener;
+    StationResponse mListener;
 
-    public void setListener(AsyncResponse listener){
+    public void setListener(StationResponse listener){
         mListener = listener;
     }
 
