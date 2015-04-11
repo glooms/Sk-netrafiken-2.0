@@ -14,9 +14,9 @@ import RouteHandling.RouteFinder;
 
 public class MainActivity extends ActionBarActivity implements StationResponse, DepartureResponse {
 
-    ArrayList<String> route = {"Staffanstorp Orkestervägen", "Staffanstorp Staffansvallen", "Staffanstorp Syrenvägen","Staffanstorp Lundavägen", "Staffanstorp Storgatan"
+    private static String[] mockRoutes = {"Staffanstorp Orkestervägen", "Staffanstorp Staffansvallen", "Staffanstorp Syrenvägen","Staffanstorp Lundavägen", "Staffanstorp Storgatan"
             ,"Staffanstorp Rådhuset", "Staffanstorp Rydbergs stig","Staffanstorp Trekantsgränd", "Staffanstorp Hantverksvägen","Staffanstorp Sliparevägen", "Staffanstorp Industrivägen",
-            "Knästorp väg 108", "Lund Södra Tpl", "Lund S:t Lars Trädgårdsgatan", "Lund Ruben Rausings gata", "Lund Arenan", "Lund Idrottsplatsen". "Lund C", "Lund Allhelgonakyrkan",
+            "Knästorp väg 108", "Lund Södra Tpl", "Lund S:t Lars Trädgårdsgatan", "Lund Ruben Rausings gata", "Lund Arenan", "Lund Idrottsplatsen", "Lund C", "Lund Allhelgonakyrkan",
             "Lund Univ-sjukhuset", "Lund BMC", "Lund LTH", "Lund Ideon", "Lund Höjdpunkten" };
 
     Station closestStation;
@@ -58,9 +58,6 @@ public class MainActivity extends ActionBarActivity implements StationResponse, 
         }
         Log.d(TAG, "CLOSEST STATION " + closestStation.getName());
         Log.d(TAG, "CLOSEST STATIONID " + closestStation.getId());
-
-        RouteFinder rf = new RouteFinder();
-        rf.execute();
     }
 
     @Override
