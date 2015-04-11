@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		293D85121AD949F50064BB99 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 293D85111AD949F50064BB99 /* MapKit.framework */; };
+		293D85151AD94F8A0064BB99 /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 293D85141AD94F8A0064BB99 /* CustomCell.m */; };
+		293D85181AD951920064BB99 /* Vehicle.m in Sources */ = {isa = PBXBuildFile; fileRef = 293D85171AD951920064BB99 /* Vehicle.m */; };
+		293D851B1AD954290064BB99 /* train.png in Resources */ = {isa = PBXBuildFile; fileRef = 293D85191AD954290064BB99 /* train.png */; };
+		293D851C1AD954290064BB99 /* vehicle.png in Resources */ = {isa = PBXBuildFile; fileRef = 293D851A1AD954290064BB99 /* vehicle.png */; };
+		293D851F1AD9636C0064BB99 /* Route.m in Sources */ = {isa = PBXBuildFile; fileRef = 293D851E1AD9636C0064BB99 /* Route.m */; };
+		293D85221AD96B450064BB99 /* RouteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 293D85211AD96B450064BB99 /* RouteViewController.m */; };
+		293D85251AD96F5E0064BB99 /* RouteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 293D85241AD96F5E0064BB99 /* RouteCell.m */; };
+		293D85271AD96F9D0064BB99 /* station_sign.png in Resources */ = {isa = PBXBuildFile; fileRef = 293D85261AD96F9D0064BB99 /* station_sign.png */; };
+		293D85291AD975430064BB99 /* station_sign_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 293D85281AD975430064BB99 /* station_sign_black.png */; };
+		293D852B1AD975480064BB99 /* station_sign_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 293D852A1AD975480064BB99 /* station_sign_red.png */; };
+		293D852D1AD978770064BB99 /* station_sign_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 293D852C1AD978770064BB99 /* station_sign_gray.png */; };
+		293D852F1AD989490064BB99 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 293D852E1AD989490064BB99 /* back.png */; };
+		293D85311AD9A4310064BB99 /* background.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 293D85301AD9A4310064BB99 /* background.jpeg */; };
+		293D85331AD9A4ED0064BB99 /* background2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 293D85321AD9A4ED0064BB99 /* background2.jpg */; };
 		29D17F7A1AD8189700EB6A52 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D17F791AD8189700EB6A52 /* main.m */; };
 		29D17F7D1AD8189700EB6A52 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D17F7C1AD8189700EB6A52 /* AppDelegate.m */; };
 		29D17F801AD8189700EB6A52 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29D17F7F1AD8189700EB6A52 /* ViewController.m */; };
@@ -30,6 +45,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		293D85111AD949F50064BB99 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		293D85131AD94F8A0064BB99 /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		293D85141AD94F8A0064BB99 /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		293D85161AD951920064BB99 /* Vehicle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vehicle.h; sourceTree = "<group>"; };
+		293D85171AD951920064BB99 /* Vehicle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Vehicle.m; sourceTree = "<group>"; };
+		293D85191AD954290064BB99 /* train.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = train.png; path = ../../../../../../Downloads/train.png; sourceTree = "<group>"; };
+		293D851A1AD954290064BB99 /* vehicle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = vehicle.png; path = ../../../../../../Downloads/vehicle.png; sourceTree = "<group>"; };
+		293D851D1AD9636C0064BB99 /* Route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Route.h; sourceTree = "<group>"; };
+		293D851E1AD9636C0064BB99 /* Route.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Route.m; sourceTree = "<group>"; };
+		293D85201AD96B450064BB99 /* RouteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteViewController.h; sourceTree = "<group>"; };
+		293D85211AD96B450064BB99 /* RouteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteViewController.m; sourceTree = "<group>"; };
+		293D85231AD96F5E0064BB99 /* RouteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RouteCell.h; sourceTree = "<group>"; };
+		293D85241AD96F5E0064BB99 /* RouteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RouteCell.m; sourceTree = "<group>"; };
+		293D85261AD96F9D0064BB99 /* station_sign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = station_sign.png; path = ../../../../../../Downloads/station_sign.png; sourceTree = "<group>"; };
+		293D85281AD975430064BB99 /* station_sign_black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = station_sign_black.png; path = ../../../../../../Downloads/station_sign_black.png; sourceTree = "<group>"; };
+		293D852A1AD975480064BB99 /* station_sign_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = station_sign_red.png; path = ../../../../../../Desktop/station_sign_red.png; sourceTree = "<group>"; };
+		293D852C1AD978770064BB99 /* station_sign_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = station_sign_gray.png; path = ../../../../../../Downloads/station_sign_gray.png; sourceTree = "<group>"; };
+		293D852E1AD989490064BB99 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		293D85301AD9A4310064BB99 /* background.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpeg; sourceTree = "<group>"; };
+		293D85321AD9A4ED0064BB99 /* background2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background2.jpg; sourceTree = "<group>"; };
 		29D17F741AD8189700EB6A52 /* Skånetrafiken 2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skånetrafiken 2.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29D17F781AD8189700EB6A52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29D17F791AD8189700EB6A52 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -53,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293D85121AD949F50064BB99 /* MapKit.framework in Frameworks */,
 				29D17FA31AD84C9400EB6A52 /* QuartzCore.framework in Frameworks */,
 				29D17FA11AD83D3900EB6A52 /* CoreLocation.framework in Frameworks */,
 			);
@@ -71,6 +107,7 @@
 		29D17F6B1AD8189700EB6A52 = {
 			isa = PBXGroup;
 			children = (
+				293D85111AD949F50064BB99 /* MapKit.framework */,
 				29D17FA21AD84C9400EB6A52 /* QuartzCore.framework */,
 				29D17FA01AD83D3900EB6A52 /* CoreLocation.framework */,
 				29D17F761AD8189700EB6A52 /* Skånetrafiken 2.0 */,
@@ -91,13 +128,23 @@
 		29D17F761AD8189700EB6A52 /* Skånetrafiken 2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				29D17F861AD8189700EB6A52 /* LaunchScreen.xib */,
+				29D17F811AD8189700EB6A52 /* Main.storyboard */,
 				29D17F7B1AD8189700EB6A52 /* AppDelegate.h */,
 				29D17F7C1AD8189700EB6A52 /* AppDelegate.m */,
 				29D17F7E1AD8189700EB6A52 /* ViewController.h */,
 				29D17F7F1AD8189700EB6A52 /* ViewController.m */,
-				29D17F811AD8189700EB6A52 /* Main.storyboard */,
+				293D85131AD94F8A0064BB99 /* CustomCell.h */,
+				293D85141AD94F8A0064BB99 /* CustomCell.m */,
+				293D85201AD96B450064BB99 /* RouteViewController.h */,
+				293D85211AD96B450064BB99 /* RouteViewController.m */,
+				293D85231AD96F5E0064BB99 /* RouteCell.h */,
+				293D85241AD96F5E0064BB99 /* RouteCell.m */,
+				293D85161AD951920064BB99 /* Vehicle.h */,
+				293D85171AD951920064BB99 /* Vehicle.m */,
+				293D851D1AD9636C0064BB99 /* Route.h */,
+				293D851E1AD9636C0064BB99 /* Route.m */,
 				29D17F841AD8189700EB6A52 /* Images.xcassets */,
-				29D17F861AD8189700EB6A52 /* LaunchScreen.xib */,
 				29D17F771AD8189700EB6A52 /* Supporting Files */,
 			);
 			path = "Skånetrafiken 2.0";
@@ -133,7 +180,16 @@
 		29D17F9D1AD8368C00EB6A52 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				293D85191AD954290064BB99 /* train.png */,
+				293D852E1AD989490064BB99 /* back.png */,
+				293D851A1AD954290064BB99 /* vehicle.png */,
 				29D17F9E1AD836BE00EB6A52 /* bus.png */,
+				293D85261AD96F9D0064BB99 /* station_sign.png */,
+				293D85281AD975430064BB99 /* station_sign_black.png */,
+				293D852A1AD975480064BB99 /* station_sign_red.png */,
+				293D852C1AD978770064BB99 /* station_sign_gray.png */,
+				293D85301AD9A4310064BB99 /* background.jpeg */,
+				293D85321AD9A4ED0064BB99 /* background2.jpg */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -218,10 +274,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				293D852D1AD978770064BB99 /* station_sign_gray.png in Resources */,
 				29D17F9F1AD836BE00EB6A52 /* bus.png in Resources */,
+				293D852B1AD975480064BB99 /* station_sign_red.png in Resources */,
+				293D85271AD96F9D0064BB99 /* station_sign.png in Resources */,
+				293D851B1AD954290064BB99 /* train.png in Resources */,
+				293D85331AD9A4ED0064BB99 /* background2.jpg in Resources */,
 				29D17F831AD8189700EB6A52 /* Main.storyboard in Resources */,
 				29D17F881AD8189700EB6A52 /* LaunchScreen.xib in Resources */,
+				293D85311AD9A4310064BB99 /* background.jpeg in Resources */,
+				293D852F1AD989490064BB99 /* back.png in Resources */,
+				293D851C1AD954290064BB99 /* vehicle.png in Resources */,
 				29D17F851AD8189700EB6A52 /* Images.xcassets in Resources */,
+				293D85291AD975430064BB99 /* station_sign_black.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +306,12 @@
 			files = (
 				29D17F801AD8189700EB6A52 /* ViewController.m in Sources */,
 				29D17F7D1AD8189700EB6A52 /* AppDelegate.m in Sources */,
+				293D85151AD94F8A0064BB99 /* CustomCell.m in Sources */,
+				293D851F1AD9636C0064BB99 /* Route.m in Sources */,
 				29D17F7A1AD8189700EB6A52 /* main.m in Sources */,
+				293D85251AD96F5E0064BB99 /* RouteCell.m in Sources */,
+				293D85221AD96B450064BB99 /* RouteViewController.m in Sources */,
+				293D85181AD951920064BB99 /* Vehicle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +506,7 @@
 				29D17F991AD8189700EB6A52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29D17F9A1AD8189700EB6A52 /* Build configuration list for PBXNativeTarget "Skånetrafiken 2.0Tests" */ = {
 			isa = XCConfigurationList;
@@ -444,6 +515,7 @@
 				29D17F9C1AD8189700EB6A52 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
