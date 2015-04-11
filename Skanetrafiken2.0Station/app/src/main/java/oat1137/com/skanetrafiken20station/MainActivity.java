@@ -9,8 +9,16 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
+import RouteHandling.RouteFinder;
+
 
 public class MainActivity extends ActionBarActivity implements StationResponse, DepartureResponse {
+
+    ArrayList<String> route = {"Staffanstorp Orkestervägen", "Staffanstorp Staffansvallen", "Staffanstorp Syrenvägen","Staffanstorp Lundavägen", "Staffanstorp Storgatan"
+            ,"Staffanstorp Rådhuset", "Staffanstorp Rydbergs stig","Staffanstorp Trekantsgränd", "Staffanstorp Hantverksvägen","Staffanstorp Sliparevägen", "Staffanstorp Industrivägen",
+            "Knästorp väg 108", "Lund Södra Tpl", "Lund S:t Lars Trädgårdsgatan", "Lund Ruben Rausings gata", "Lund Arenan", "Lund Idrottsplatsen". "Lund C", "Lund Allhelgonakyrkan",
+            "Lund Univ-sjukhuset", "Lund BMC", "Lund LTH", "Lund Ideon", "Lund Höjdpunkten" };
+
     Station closestStation;
     StationFinder sf;
     DepartureFinder df;
@@ -27,13 +35,16 @@ public class MainActivity extends ActionBarActivity implements StationResponse, 
 
     public void stationFindFinish(ArrayList<Station> stations) {
         double minDistance = Double.MAX_VALUE;
-        for (Station s : stations) {
-            if (s.getDistance() < minDistance) {
-                minDistance = s.getDistance();
-                closestStation = s;
+        if (closestStation == null) {
+            for (Station s : stations) {
+                if (s.getDistance() < minDistance) {
+                    minDistance = s.getDistance();
+                    closestStation = s;
+                }
             }
+        } else {
+            Log.e(TAG, "ERROR: CLOSEST STATION ALREADY SET");
         }
-
         df = new DepartureFinder();
         df.setListener(this);
         df.execute();
@@ -47,6 +58,9 @@ public class MainActivity extends ActionBarActivity implements StationResponse, 
         }
         Log.d(TAG, "CLOSEST STATION " + closestStation.getName());
         Log.d(TAG, "CLOSEST STATIONID " + closestStation.getId());
+
+        RouteFinder rf = new RouteFinder();
+        rf.execute();
     }
 
     @Override
